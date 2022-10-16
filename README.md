@@ -11,6 +11,7 @@ npm install vue@latest
 npm install
 npm i --save @fortawesome/fontawesome-svg-core
 npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/free-regular-svg-icons
 ```
 
 ### Compile and open the project:
