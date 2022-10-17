@@ -22,8 +22,8 @@
 </template>
 
 <script>
-  import ItemCard from 'C:/Compsci WIP/Capstone/capstoneProj/Store-Website/src/components/ItemCard.vue'
-  import UpperBar from 'C:/Compsci WIP/Capstone/capstoneProj/Store-Website/src/components/UpperBar.vue'
+  import ItemCard from '../components/ItemCard.vue'
+  import UpperBar from '../components/UpperBar.vue'
   
   export default {
     components:{
