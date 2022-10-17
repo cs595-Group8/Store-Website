@@ -45,8 +45,6 @@ nav a:first-of-type {
 
 @media (min-width: 1024px) {
 
-
-
   nav {
     text-align: left;
     margin-left: -1rem;

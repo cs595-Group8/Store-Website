@@ -13,23 +13,23 @@
                 <b-card-body>
                     <b-card-title>Profile details: </b-card-title>
                     <b-card-text>
-                        <table>
-                            <tr>
-                                <td><b>First name: </b></td>
-                                <td><b-form-input id="firstName" v-model="firstName" placeholder="Enter your first name"></b-form-input></td>
-                            </tr>
+                        <b-container>
+                            <b-row>
+                                <b-col><b>First name: </b></b-col>
+                                <b-col><b-form-input id="firstName" v-model="firstName" placeholder="Enter your first name"></b-form-input></b-col>
+                            </b-row>
 
-                            <tr>
-                                <td><b>Last name: </b></td>
-                                <td><b-form-input id="lastName" v-model="lastName" placeholder="Enter your last name"></b-form-input></td>
-                            </tr>
+                            <b-row>
+                                <b-col><b>Last name: </b></b-col>
+                                <b-col><b-form-input id="lastName" v-model="lastName" placeholder="Enter your last name"></b-form-input></b-col>
+                            </b-row>
 
-                            <tr>
-                                <td><b>Email: </b></td>
-                                <td><b-form-input id="email" v-model="email" placeholder="Enter your email address" type="email"></b-form-input></td>
-                            </tr>
+                            <b-row>
+                                <b-col><b>Email: </b></b-col>
+                                <b-col><b-form-input id="email" v-model="email" placeholder="Enter your email address" type="email"></b-form-input></b-col>
+                            </b-row>
 
-                        </table>
+                        </b-container>
                         <br>
 
                         <b-button>View Saved Items</b-button>
@@ -42,17 +42,17 @@
                     <b-card-text>
                         <b-card-title>Change password: </b-card-title>
 
-                        <table>
-                            <tr>
-                                <td><b>Old password: </b></td>
-                                <td><b-form-input id="firstName" v-model="oldPassword" placeholder="Enter your current password"></b-form-input></td>
-                            </tr>
+                        <b-container>
+                            <b-row>
+                                <b-col><b>Old password: </b></b-col>
+                                <b-col><b-form-input id="firstName" v-model="oldPassword" placeholder="Enter your current password"></b-form-input></b-col>
+                            </b-row>
 
-                            <tr>
-                                <td><b>New password: </b></td>
-                                <td><b-form-input id="lastName" v-model="newPassword" placeholder="Enter your new password"></b-form-input></td>
-                            </tr>
-                        </table>
+                            <b-row>
+                                <b-col><b>New password: </b></b-col>
+                                <b-col><b-form-input id="lastName" v-model="newPassword" placeholder="Enter your new password"></b-form-input></b-col>
+                            </b-row>
+                        </b-container>
 
                     </b-card-text>
                 </b-card-body>
