@@ -18,9 +18,16 @@ const router = createRouter({
       component: () => import('../views/ProfileDetails.vue')
     },
     {
+
       path: '/create-account',
       name: 'create-account',
       component: () => import('../views/CreateAccount.vue')
+},
+    {
+      path: '/saved-items',
+      name: 'saved-items',
+      component: () => import('../views/SavedItems.vue')
+
     }
   ]
 })
