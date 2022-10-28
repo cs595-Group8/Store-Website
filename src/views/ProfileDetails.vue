@@ -7,55 +7,121 @@
                 img-alt="Image"
                 img-top
                 tag="article"
-                style="max-width: 30rem;"
-                class="mb-2">
+                style="max-width: 60rem;"
+                class="mx-auto">
 
-                <b-card-body>
-                    <b-card-title>Profile details: </b-card-title>
-                    <b-card-text>
-                        <table>
-                            <tr>
-                                <td><b>First name: </b></td>
-                                <td><b-form-input id="firstName" v-model="firstName" placeholder="Enter your first name"></b-form-input></td>
-                            </tr>
+                <b-container>
+                    <b-row>
+                        <b-col cols="12" lg="6">
+                            <b-card-body>
+                                <b-card-title>Profile details</b-card-title>
+                                <b-container>
+                                    <b-row>
+                                        <b-col>
+                                            <!-- First name input field ------->
+                                            <b-form-group 
+                                                label-cols="4"
+                                                content-cols="8"
+                                                label="First name:"
+                                                label-for="first-name">
+                                                <b-form-input id="first-name" v-model="firstName" placeholder="Enter your first name"></b-form-input>
+                                            </b-form-group>
+                                        </b-col>
+                                    </b-row>
 
-                            <tr>
-                                <td><b>Last name: </b></td>
-                                <td><b-form-input id="lastName" v-model="lastName" placeholder="Enter your last name"></b-form-input></td>
-                            </tr>
+                                    <b-row>
+                                        <b-col>
+                                            <!-- Last name input field -------->
+                                            <b-form-group 
+                                                label-cols="4"
+                                                content-cols="8"
+                                                label="Last name:"
+                                                label-for="last-name">
+                                                <b-form-input 
+                                                    id="last-name" 
+                                                    v-model="lastName" 
+                                                    placeholder="Enter your last name">
+                                                </b-form-input>
+                                            </b-form-group>
+                                        </b-col>
+                                    </b-row>
 
-                            <tr>
-                                <td><b>Email: </b></td>
-                                <td><b-form-input id="email" v-model="email" placeholder="Enter your email address" type="email"></b-form-input></td>
-                            </tr>
+                                    <b-row>
+                                        <b-col>
+                                            <!-- Email input field ------------>
+                                            <b-form-group 
+                                                label-cols="4"
+                                                content-cols="8"
+                                                label="Email:"
+                                                label-for="email">
+                                                <b-form-input 
+                                                    id="email" 
+                                                    v-model="email" 
+                                                    placeholder="Enter your email address">
+                                                </b-form-input>
+                                            </b-form-group>
+                                        </b-col>
+                                    </b-row>
 
-                        </table>
-                        <br>
+                                </b-container>
+                            </b-card-body>
+                        </b-col>
 
-                        <b-button>View Saved Items</b-button>
-                    </b-card-text>
-                </b-card-body>
+                        <!-- Password block ----------------------------------->
+                        <b-col cols="12" lg="6">
+                            <b-card-body>
 
-                <hr>
+                                <b-card-title>Change password: </b-card-title>
 
-                <b-card-body>
-                    <b-card-text>
-                        <b-card-title>Change password: </b-card-title>
+                                <b-container>
+                                    <b-row>
+                                        <b-col>
+                                            <!-- Old password input field ----->
+                                            <b-form-group 
+                                                label-cols="6"
+                                                label-cols-sm="4"
+                                                content-cols="6"
+                                                content-cols-sm="8"
+                                                label="Old password:"
+                                                label-for="old-password">
+                                                <b-form-input 
+                                                    id="old-password" 
+                                                    v-model="oldPassword" 
+                                                    placeholder="Enter your current password">
+                                                </b-form-input>
+                                            </b-form-group>
+                                        </b-col>
+                                    </b-row>
 
-                        <table>
-                            <tr>
-                                <td><b>Old password: </b></td>
-                                <td><b-form-input id="firstName" v-model="oldPassword" placeholder="Enter your current password"></b-form-input></td>
-                            </tr>
-
-                            <tr>
-                                <td><b>New password: </b></td>
-                                <td><b-form-input id="lastName" v-model="newPassword" placeholder="Enter your new password"></b-form-input></td>
-                            </tr>
-                        </table>
-
-                    </b-card-text>
-                </b-card-body>
+                                    <b-row>
+                                        <b-col>
+                                            <!-- New password input field ----->
+                                            <b-form-group 
+                                                label-cols="6"
+                                                label-cols-sm="4"
+                                                content-cols="6"
+                                                content-cols-sm="8"
+                                                label="New password:"
+                                                label-for="new-password">
+                                                <b-form-input 
+                                                    id="new-password" 
+                                                    v-model="newPassword" 
+                                                    placeholder="Enter your new password">
+                                                </b-form-input>
+                                            </b-form-group>
+                                        </b-col>
+                                    </b-row>
+                                </b-container>
+                            </b-card-body>
+                        </b-col>
+                        <b-col>
+                            <hr>
+                            <b-card-body>
+                                <b-button variant="success">Save changes</b-button>
+                            </b-card-body>
+                        </b-col>
+                    </b-row>
+                </b-container>
             </b-card>
         </div>
     </div>
@@ -76,16 +142,4 @@
 
 </script>
 
-<style>
-@media (min-width: 1024px) {
-  .profileDetails {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
 
-td {
-    padding: 5px 10px 0px 10px
-}
-</style>
