@@ -21,6 +21,11 @@ const router = createRouter({
       path: '/saved-items',
       name: 'saved-items',
       component: () => import('../views/SavedItems.vue')
+    },
+    {
+      path: '/create-account',
+      name: 'create-account',
+      component: () => import('../views/CreateAccount.vue')
     }
   ]
 })
