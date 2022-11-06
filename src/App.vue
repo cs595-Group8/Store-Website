@@ -3,23 +3,24 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-    <b-container fluid>
-        <header>
-        </header>
+  <b-container fluid>
+    <header>
+    </header>
 
-        <div>
+    <div>
 
 
-       
+
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/profile-details">Profile Details</RouterLink>
         <RouterLink to="/saved-items">Saved Items</RouterLink>
+        <RouterLink to="/create-account">Create Account</RouterLink>
       </nav>
     </div>
-  
- <RouterView />
 
-    </b-container>
+    <RouterView />
+
+  </b-container>
 </template>
