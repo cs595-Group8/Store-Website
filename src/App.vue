@@ -18,10 +18,8 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/saved-items">Saved Items</RouterLink>
       </nav>
     </div>
-  </header>
   
  <RouterView />
 
-        </div>
     </b-container>
 </template>
