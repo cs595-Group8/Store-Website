@@ -1,8 +1,14 @@
-<script setup>
-</script>
-
 <template>
-  <main>
-    
-  </main>
+<UpperBar></UpperBar>
+
 </template>
+
+<script>
+  import UpperBar from '../components/UpperBar.vue'
+  
+  export default {
+    components:{
+        UpperBar
+    }
+  }
+</script>
