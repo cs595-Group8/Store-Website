@@ -1,9 +1,9 @@
 <template>
-    <UpperBar></UpperBar>
+
     <div class="createAccount">
         <div class="wrapper">
-            <b-card header="Saved Items" header-text-variant="white" header-tag="header" header-bg-variant="success"
-                footer-border-variant="dark">
+            <b-card 
+                bg-variant="light">
 
                 <b-container>
                     <b-row>
@@ -86,7 +86,7 @@
                         <b-col>
                             <hr>
                             <b-card-body>
-                                <b-button variant="success">Create Account</b-button>
+                                <b-button variant="success" href="/login">Create Account</b-button>
                             </b-card-body>
                         </b-col>
                     </b-row>
@@ -97,19 +97,17 @@
 </template>
 
 <script>
-import UpperBar from '../components/UpperBar.vue'
 export default {
     data() {
         return {
             firstName: '',
             lastName: '',
             email: '',
-            password: '',
+            oldPassword: '',
             rePassword: ''
         }
     },
     components: {
-        UpperBar
     }
 }
 

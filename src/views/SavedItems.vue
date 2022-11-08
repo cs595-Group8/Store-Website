@@ -3,21 +3,13 @@
 <template>
   <UpperBar></UpperBar>
   <div>
-    <b-card
-        header="Saved Items"
-        header-text-variant="white"
-        header-tag="header"
-        header-bg-variant="success"
-        footer-border-variant="dark"
-    >
-    <b-card-body>
+
         <b-card-group deck>
             <ItemCard></ItemCard>
             <ItemCard></ItemCard>
             <ItemCard></ItemCard>
         </b-card-group>
-    </b-card-body>
-  </b-card>
+
   </div>
 </template>
 
