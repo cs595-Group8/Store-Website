@@ -33,7 +33,7 @@
 
         <b-row>
         <b-col class="center-text space">
-          <b-link href="#" class="card-link">Create an account</b-link>
+          <b-link href="/create-account" class="card-link">Create an account</b-link>
           </b-col>
         </b-row>
       </b-card-body>

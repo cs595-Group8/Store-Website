@@ -14,7 +14,12 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
     "bootstrap-vue": "^2.22.0",
-    "bootstrap-vue-3": "^0.3.11",
+    "bootstrap-vue-3": "^0.3.12",
+    "file-url": "^4.0.0",
+    "lodash": "^4.17.21",
+    "lowdb": "^5.0.5",
+    "path-browserify": "^1.0.1",
+    "url": "^0.11.0",
     "vue": "^3.2.38",
     "vue-router": "^4.1.5"
   },
