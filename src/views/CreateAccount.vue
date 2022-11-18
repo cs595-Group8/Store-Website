@@ -86,7 +86,7 @@
                         <b-col>
                             <hr>
                             <b-card-body>
-                                <b-button variant="success" href="/login">Create Account</b-button>
+                                <b-button variant="success" href="/login" @click="createAccount">Create Account</b-button>
                             </b-card-body>
                         </b-col>
                     </b-row>
@@ -97,6 +97,8 @@
 </template>
 
 <script>
+import { saveAccount } from "/src/persistance/database.js"
+
 export default {
     data() {
         return {
@@ -108,6 +110,20 @@ export default {
         }
     },
     components: {
+
+    },
+
+    methods: {
+        createAccount() {
+            const firstName = this.firstName.value
+            const lastName = this.lastName.value
+            const email = this.email.value
+            const password = this.rePassword
+
+            saveAccount(firstName, lastName, email, password)
+
+
+        }
     }
 }
 

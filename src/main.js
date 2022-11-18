@@ -27,5 +27,3 @@ app.use(BootstrapVue3)
 app.mount('#app')
 
 
-
-console.log(db)
