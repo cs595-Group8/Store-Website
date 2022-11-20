@@ -1,5 +1,5 @@
 <template>
-  <div style="max-width:15rem; max-height:40rem; margin:1rem;">
+  <div>
     <b-card v-bind:img-src=img img-alt="Product Image" img-top>
         <b-card-body> 
             <b-link v-bind:href=productLink>
@@ -9,7 +9,7 @@
                 <div style="display: flex; justify-content: space-between; ">
                     <p class="card-text">
                         <strong>Price:</strong> 
-                        <div> ${{price}}</div>
+                        <div> {{price}}</div>
                     </p>
                     <p class="card-text">
                         <strong>Vendor: </strong> 
@@ -23,7 +23,7 @@
                     </p>
 
                     <div>
-                        <label> {{rating}} </label>
+                        <label> {{rating != undefined ? rating: "N/A"}} </label>
                         <fa icon="fa-regular fa-star"/>
                     </div>
                     
