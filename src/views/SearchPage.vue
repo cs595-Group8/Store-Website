@@ -27,7 +27,7 @@
       <FilterBox></FilterBox>
       <div style="display: flex; justify-content: center">
         <div style="display: grid; grid-template-columns: auto auto auto auto auto auto; width: 80%; padding: 1rem">
-          <div v-for="item of itemsToShow">
+          <div v-for="item of items.slice(start-1, end)">
             <ItemCard 
               v-bind:name=item.name
               v-bind:rating=item.rating
@@ -54,6 +54,8 @@
   import FilterBox from '../components/FilterBox.vue'
   import axios from "axios"
   import Item from '../models/item.js'
+
+  
   
   export default {
     components:{
@@ -65,7 +67,6 @@
       return{
         searchTerm: '',
         items: [],
-        itemsToShow: [],
         firstSearch: true,
         isLoading: false,
         formatter: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}),
@@ -92,10 +93,18 @@
           });
         }
         this.isLoading = false;
-        this.items = items.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+        items = items.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+        this.items = items;
         this.start = 1;
-        this.end = this.items.length < 25 ? this.items.length: 25;
-        this.itemsToShow = this.items.slice(this.start-1, this.end-1);
+        this.end = items.length <  24? items.length: 24;
+      },
+      previous: function(event){
+        this.start = this.start - 24; 
+        this.end = (Math.ceil(this.end/24)-1)*24;
+      },
+      next: function(event){
+        this.start = this.start + 24;
+        this.end = this.items.length < this.end + 24 ? this.items.length: this.end + 24;
       },
       targetSearch: async function(){
         let url = "https://api.redcircleapi.com/request?api_key=425C4E691CE8494DB739D40611D91D73&search_term=";
@@ -122,17 +131,8 @@
         } catch (error){
           console.log(error);
         }
-      },
-      previous: function(event){
-        this.start = this.start - 25; 
-        this.end = this.end - 25;
-        this.itemsToShow = this.items.splice(this.start, this.end);
-      },
-      next: function(event){
-        this.start = this.start + 25;
-        this.end = this.end + 25;
-        this.itemsToShow = this.items.splice(this.start, this.end);
       }
+      
     }
   }
   
