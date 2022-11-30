@@ -22,7 +22,7 @@
             <template #button-content>
               <em>User</em>
             </template>
-            <b-dropdown-item href="/profile-details">Profile Details</b-dropdown-item>
+            <b-dropdown-item @click="openProfileDetails">Profile Details</b-dropdown-item>
             <b-dropdown-item @click="signOut">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -49,6 +49,10 @@ export default {
         signOut() {
             this.$store.state.session.user = null
             this.$router.push('/login')
+        },
+
+        openProfileDetails() {
+            this.$router.push('/profile-details')
         }
     }
 }

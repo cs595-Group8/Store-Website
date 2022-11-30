@@ -1,3 +1,5 @@
+import { updateAccount } from "/src/persistance/database.js"
+
 const state = {
     user: null
 }
@@ -11,6 +13,11 @@ const mutations = {
 const actions = {
     loginUser({commit}, account) {
         commit('SET_USER', account)
+    },
+
+    updateUser({dispach, commit}, user) {
+        updateAccount(user.id, user.firstName, user.lastName, user.emailAddress, user.password)
+        commit('SET_USER', user)
     }
 }
 
