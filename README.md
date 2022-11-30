@@ -15,9 +15,15 @@ npm i --save @fortawesome/free-regular-svg-icons
 npm install axios
 ```
 
+Install the database-server:
+```
+npm install -g json-server
+```
+
 ### Compile and open the project:
 
 ```sh
+json-server --watch db.json
 npm run dev
 ```
 
