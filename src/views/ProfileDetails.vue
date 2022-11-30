@@ -206,8 +206,6 @@ export default {
 
             this.$store.dispatch('session/updateUser', newUser)
                 .then(() => {this.$router.push('/')})
-
-            
         }
 
     },
