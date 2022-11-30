@@ -1,4 +1,5 @@
 let accounts = {}
+let savedItems = {}
 let user = undefined
 
-export default {accounts, user}
+export {accounts, user}

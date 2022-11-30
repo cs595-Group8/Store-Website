@@ -18,6 +18,7 @@ import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
 
 
 
+
 const app = createApp(App)
 app.component('fa', FontAwesomeIcon)
 app.use(router)
@@ -25,5 +26,7 @@ app.use(BootstrapVue3)
 
 
 app.mount('#app')
+
+
 
 
