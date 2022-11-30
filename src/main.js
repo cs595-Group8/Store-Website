@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
+import store from './store'
 
 
 
@@ -23,8 +24,7 @@ const app = createApp(App)
 app.component('fa', FontAwesomeIcon)
 app.use(router)
 app.use(BootstrapVue3)
-
-
+app.use(store)
 app.mount('#app')
 
 

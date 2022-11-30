@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="faded">
-      <b-navbar-brand href="#">Welcome, <slot name="username"> Guest</slot>!</b-navbar-brand>
+      <b-navbar-brand href="#">Welcome, {{name}}!</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -23,7 +23,7 @@
               <em>User</em>
             </template>
             <b-dropdown-item href="/profile-details">Profile Details</b-dropdown-item>
-            <b-dropdown-item href="/login">Sign Out</b-dropdown-item>
+            <b-dropdown-item @click="signOut">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -31,3 +31,25 @@
   </div>
 
 </template>
+
+<script>
+
+export default {
+    computed: {
+        name() {
+            if (this.$store.state.session.user) {
+                return this.$store.state.session.user.firstName
+            } else {
+                return "Guest"
+            }
+        }
+    },
+
+    methods: {
+        signOut() {
+            this.$store.state.session.user = null
+            this.$router.push('/login')
+        }
+    }
+}
+</script>
