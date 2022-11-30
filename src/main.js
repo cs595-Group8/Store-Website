@@ -18,6 +18,7 @@ import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
 
 
 
+
 const app = createApp(App)
 app.component('fa', FontAwesomeIcon)
 app.use(router)
@@ -28,4 +29,4 @@ app.mount('#app')
 
 
 
-console.log(db)
+
