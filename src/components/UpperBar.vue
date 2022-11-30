@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { clearUserSession } from '/src/persistance/database.js'
+
 
 export default {
     computed: {
@@ -48,7 +50,10 @@ export default {
     methods: {
         signOut() {
             this.$store.state.session.user = null
-            this.$router.push('/login')
+            clearUserSession()
+                .then(() => {
+                    this.$router.push('/login')
+                })
         },
 
         openProfileDetails() {

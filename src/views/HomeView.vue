@@ -43,6 +43,13 @@
         items: ''
       }
     },
+
+    mounted() {
+        if (!this.$store.state.session.user) {
+            this.$router.push('/login')
+        }
+    },
+
     methods: {
       search: async function (event) {
         let items = [];
