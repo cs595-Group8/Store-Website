@@ -66,10 +66,48 @@ const saveItem = function(name, price, vendor, status, rating, img, productLink)
         })
 }
 
+const getUserSession = function() {
+
+    return getAccounts().then((response) => {
+        if (response && response.data.length > 0) {
+            return axios.get(databaseHost + ':' + databasePort + '/user')
+                .then((response2) => {
+                    console.log(response2)
+                    if (response2) {
+                        for (const account of response.data) {
+                            console.log(account.id, response2.data.userID)
+                            if (account.id === response2.data.userID) {
+                                return Promise.resolve(account)
+                            }
+                        }
+                        return Promise.resolve(null)
+                    }
+                    return Promise.resolve(null)
+                })
+        }
+        return Promise.resolve(null)
+    })
+
+}
+
+const saveUserSession = function(userID) {
+    return axios.put(databaseHost + ':' + databasePort + '/user', 
+    { 
+        "userID": userID
+    })
+}
+
+const clearUserSession = function(userID) {
+    return axios.put(databaseHost + ':' + databasePort + '/user', {})
+}
+
 export {
     saveAccount,
     getAccounts,
     updateAccount,
     getSavedItems,
-    saveItem
+    saveItem,
+    getUserSession,
+    saveUserSession,
+    clearUserSession
 }

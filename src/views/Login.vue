@@ -59,7 +59,7 @@
 <script>
 import ItemCard from "../components/ItemCard.vue";
 import UpperBar from "../components/UpperBar.vue";
-import { getAccounts } from "/src/persistance/database.js"
+import { getAccounts, saveUserSession } from "/src/persistance/database.js"
 
 export default {
   components: {
@@ -92,6 +92,7 @@ export default {
   methods: {
 
     async login() {
+        console.log(this.$store.state.session.user)
         if (this.valid()) {
             getAccounts().then((accounts) => {
                 
@@ -101,6 +102,8 @@ export default {
                         if (account.emailAddress == this.email) {
                             if (account.password == this.password) {
                                 this.$store.dispatch('session/loginUser', account)
+                                saveUserSession(account.id)
+
                                 this.$router.push('/')
                             } else {
                                 this.validPassword = false;
