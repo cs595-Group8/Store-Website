@@ -155,6 +155,12 @@ export default {
     UpperBar,
   },
 
+    mounted() {
+        if (!this.$store.state.session.user) {
+            this.$router.push('/login')
+        }
+    },
+
   computed: {
     pFirstName() {
       if (this.$store.state.session.user) {

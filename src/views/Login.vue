@@ -83,6 +83,12 @@ export default {
     };
   },
 
+  mounted() {
+    if (this.$store.state.session.user) {
+        this.$router.push('/')
+    }
+  },
+
   methods: {
 
     async login() {

@@ -74,6 +74,13 @@
         end: 25
       }
     },
+
+    mounted() {
+        if (!this.$store.state.session.user) {
+            this.$router.push('/login')
+        }
+    },
+    
     methods: {
       search: async function (event) {
         this.firstSearch = false;
