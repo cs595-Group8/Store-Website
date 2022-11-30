@@ -37,6 +37,16 @@ const saveAccount = async function(firstName, lastName, emailAddress, password) 
     }
 }
 
+const updateAccount = function(id, firstName, lastName, emailAddress, password) {
+    return axios.put(databaseHost + ':' + databasePort + '/accounts/' + id, 
+    { 
+        "firstName": firstName, 
+        "lastName": lastName, 
+        "emailAddress": emailAddress, 
+        "password": password
+    })
+}
+
 // (!!) returns a Promise, needs to be awaited
 // look in the CreateAccount script for await example
 const getSavedItems = function() {
@@ -59,6 +69,7 @@ const saveItem = function(name, price, vendor, status, rating, img, productLink)
 export {
     saveAccount,
     getAccounts,
+    updateAccount,
     getSavedItems,
     saveItem
 }

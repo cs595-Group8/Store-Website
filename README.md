@@ -13,6 +13,7 @@ npm i --save @fortawesome/fontawesome-svg-core
 npm i --save @fortawesome/free-solid-svg-icons
 npm i --save @fortawesome/free-regular-svg-icons
 npm install axios
+npm install vuex@next --save
 ```
 
 Install the database-server:

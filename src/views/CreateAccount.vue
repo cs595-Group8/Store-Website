@@ -178,6 +178,10 @@ export default {
         }
     },
 
+    mounted() {
+        console.log(this.$store.state.session.user)
+    },
+
     methods: {
         async createAccount() {
             if (this.validate()) {
