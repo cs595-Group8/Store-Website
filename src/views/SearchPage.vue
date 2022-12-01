@@ -23,8 +23,12 @@
     <img src="../images/loading.gif" style="margin: 1rem"/>
   </div>
   <div v-if="!firstSearch && !isLoading">
-    <div style="display: flex; ">
-      <FilterBox></FilterBox>
+    <div style="display: flex">
+      <FilterBox
+        v-bind:priceFilter="this.priceFilter"
+        v-bind:ratingsFilter="this.ratingsFilter"
+        v-bind:availibilityFilter="this.availibilityFilter"
+      ></FilterBox>
       <div style="display: flex; justify-content: center">
         <div style="display: grid; grid-template-columns: auto auto auto auto auto auto; width: 80%; padding: 1rem">
           <div v-for="item of items.slice(start-1, end)">
@@ -35,6 +39,8 @@
               v-bind:img=item.img
               v-bind:price=item.price
               v-bind:productLink=item.productLink
+              v-bind:status=item.status
+              isSearch={{true}}
             />
           </div>
         </div>
@@ -69,7 +75,6 @@
         items: [],
         firstSearch: true,
         isLoading: false,
-        formatter: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}),
         start: 1,
         end: 25
       }
@@ -86,17 +91,21 @@
         this.firstSearch = false;
         this.isLoading = true;
         let items = [];
+
+        const walmartTask = this.walmartSearch();
         const targetResults = await this.targetSearch();
-        const walmartResults = await this.walmartSearch();
+        
         if(targetResults.data.search_results != undefined){
           targetResults.data.search_results.forEach((item) => {
-            items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Target", "Available", item.product.rating, item.product.main_image, item.product.link));
+            items.push(new Item(item.product.title, item.offers.primary.price, "Target", "In Stock", item.product.rating, item.product.main_image, item.product.link));
           });
         }
+
+        const walmartResults = await walmartTask;
         
         if(walmartResults.data.search_results != undefined){
           walmartResults.data.search_results.forEach((item) => {
-            items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Walmart", "Available", item.product.rating, item.product.main_image, item.product.link));
+            items.push(new Item(item.product.title, item.offers.primary.price, "Walmart", "In Stock", item.product.rating, item.product.main_image, item.product.link));
           });
         }
         this.isLoading = false;
@@ -137,6 +146,36 @@
           return result;
         } catch (error){
           console.log(error);
+        }
+      },
+      priceFilter: function(direction){
+        let items = (Object.values({...this.items})).map((item) => {return {...item}});
+
+        if(direction === "HighToLow"){
+          const newItems = items.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
+          this.items = newItems;
+        }else{
+          const newItems = items.sort((a, b) => (a.price ?? 0) - (b.price ?? 0));
+          this.items = newItems;
+        }
+        
+      },
+      ratingsFilter: function(direction){
+        let items = (Object.values({...this.items})).map((item) => {return {...item}});
+
+        if(direction === "HighToLow"){
+          this.items = items.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+        }else{
+          this.items = items.sort((a, b) =>(a.rating ?? 0) - (b.rating ?? 0));
+        }
+      },
+      availibilityFilter: function(direction){
+        let items = (Object.values({...this.items})).map((item) => {return {...item}});
+
+        if(direction === "InStock"){
+          this.items = items.sort((a, b) => ((a.availbility === "In Stock" && b.availbility === "Out of Stock") ? -1: 1));
+        }else{
+          this.items = items.sort((a, b) => ((b.availbility === "In Stock" && a.availbility === "Out of Stock") ? -1: 1));
         }
       }
       
