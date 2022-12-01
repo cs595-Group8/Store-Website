@@ -3,7 +3,7 @@
 <template>
   <UpperBar></UpperBar>
   <div>
-    <div v-if="this.items.length > 0" style="display: flex">
+    <div v-if="this.hasItems()" style="display: flex">
       <div style="display: flex; justify-content: center">
         <div style="display: grid; grid-template-columns: auto auto auto auto auto auto; width: 80%; padding: 1rem">
           <div v-for="item of items">
@@ -56,8 +56,13 @@
             this.items = data;
           });
           
-        })
-        
+        })  
+      },
+      hasItems: function(){
+        if(this.items){
+          return this.items.length > 0;
+        }
+        return false;
       }
     }
   }

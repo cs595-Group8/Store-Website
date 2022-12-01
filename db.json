@@ -5,9 +5,11 @@
       "lastName": "Admin",
       "emailAddress": "admin",
       "password": "1",
+      "savedItems": [],
       "id": 1
     }
   ],
-  "savedItems": [],
-  "user": {}
+  "user": {
+    "userID": 1
+  }
 }
