@@ -87,13 +87,13 @@
         this.firstSearch = false;
         this.isLoading = true;
         let items = [];
-        //const targetResults = await this.targetSearch();
+        const targetResults = await this.targetSearch();
         const walmartResults = await this.walmartSearch();
-        //if(targetResults.data.search_results != undefined){
-          //targetResults.data.search_results.forEach((item) => {
-            //items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Target", "Available", item.product.rating, item.product.main_image, item.product.link));
-          //});
-        //}
+        if(targetResults.data.search_results != undefined){
+          targetResults.data.search_results.forEach((item) => {
+            items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Target", "Available", item.product.rating, item.product.main_image, item.product.link));
+          });
+        }
         
         if(walmartResults.data.search_results != undefined){
           walmartResults.data.search_results.forEach((item) => {
