@@ -18,8 +18,8 @@
             </div>
                     
             <p class="card-text">
-                <strong>Status:</strong> 
-                <slot name="status"> Unknown </slot>
+                <strong>Status: </strong> 
+                <slot name="status"> {{ status }} </slot>
             </p>
 
             <div>
@@ -53,6 +53,7 @@
             rating: Number,
             productLink: String,
             isSearch: Boolean,
+            status: String,
             update: Function | undefined
         },
         methods:{

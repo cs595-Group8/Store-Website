@@ -35,6 +35,7 @@
               v-bind:img=item.img
               v-bind:price=item.price
               v-bind:productLink=item.productLink
+              v-bind:status=item.status
               isSearch={{true}}
             />
           </div>
@@ -87,17 +88,21 @@
         this.firstSearch = false;
         this.isLoading = true;
         let items = [];
+
+        const walmartTask = this.walmartSearch();
         const targetResults = await this.targetSearch();
-        const walmartResults = await this.walmartSearch();
+        
         if(targetResults.data.search_results != undefined){
           targetResults.data.search_results.forEach((item) => {
-            items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Target", "Available", item.product.rating, item.product.main_image, item.product.link));
+            items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Target", "In Stock", item.product.rating, item.product.main_image, item.product.link));
           });
         }
+
+        const walmartResults = await walmartTask;
         
         if(walmartResults.data.search_results != undefined){
           walmartResults.data.search_results.forEach((item) => {
-            items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Walmart", "Available", item.product.rating, item.product.main_image, item.product.link));
+            items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Walmart", "In Stock", item.product.rating, item.product.main_image, item.product.link));
           });
         }
         this.isLoading = false;
