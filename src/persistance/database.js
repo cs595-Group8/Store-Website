@@ -10,6 +10,10 @@ const getAccounts = function() {
     return axios.get(databaseHost + ':' + databasePort + '/accounts')
 }
 
+const getAccount = function(id) {
+    return axios.get(databaseHost + ':' + databasePort + '/accounts/' + id)
+}
+
 const saveAccount = async function(firstName, lastName, emailAddress, password) {
     const response = await getAccounts();
     let valid = true;
@@ -29,7 +33,8 @@ const saveAccount = async function(firstName, lastName, emailAddress, password) 
                 "firstName": firstName, 
                 "lastName": lastName, 
                 "emailAddress": emailAddress, 
-                "password": password
+                "password": password,
+                "savedItems": []
             })
         return null
     } else {
@@ -38,36 +43,82 @@ const saveAccount = async function(firstName, lastName, emailAddress, password) 
 }
 
 const updateAccount = function(id, firstName, lastName, emailAddress, password) {
-    return axios.put(databaseHost + ':' + databasePort + '/accounts/' + id, 
-    { 
-        "firstName": firstName, 
-        "lastName": lastName, 
-        "emailAddress": emailAddress, 
-        "password": password
-    })
+    return getAccount(id)
+        .then((result) => {
+            console.log(result)
+            return axios.put(databaseHost + ':' + databasePort + '/accounts/' + id, 
+            { 
+                "firstName": firstName, 
+                "lastName": lastName, 
+                "emailAddress": emailAddress, 
+                "password": password,
+                "savedItems": result.data.savedItems
+            })
+        })
 }
 
 // (!!) returns a Promise, needs to be awaited
 // look in the CreateAccount script for await example
-const getSavedItems = function() {
-    return axios.get(databaseHost + ':' + databasePort + '/savedItems')
+const getSavedItems = function(id) {
+    return axios.get(databaseHost + ':' + databasePort + '/accounts/' + id).then((user) => {
+        return user.data.savedItems;
+    })
 }
 
 const saveItem = function(name, price, vendor, status, rating, img, productLink) {
-   return axios.post(databaseHost + ':' + databasePort + '/savedItems', 
-        { 
-            "name": name, 
-            "price": price,
-            "vendor": vendor,
-            "status": status,
-            "rating": rating,
-            "img": img,
-            "productLink": productLink
+    return getUserSession().then((user) => {
+        const id = user.id;
+        getAccount(id)
+        .then((result) => {
+            let items = result.data.savedItems
+            items.push(        
+            { 
+                "name": name, 
+                "price": price,
+                "vendor": vendor,
+                "status": status,
+                "rating": rating,
+                "img": img,
+                "productLink": productLink
+            })
+
+            return axios.put(databaseHost + ':' + databasePort + '/accounts/' + id, 
+            { 
+                "firstName": result.data.firstName, 
+                "lastName": result.data.lastName, 
+                "emailAddress": result.data.emailAddress, 
+                "password": result.data.password,
+                "savedItems": items
+            })
         })
+    }) 
+}
+
+const deleteItem = function(productLink) {
+    return getUserSession().then((user) => {
+        const id = user.id;
+        getAccount(id)
+        .then((result) => {
+            let items = [];
+            result.data.savedItems.forEach(item => {
+                if(item.productLink !== productLink){
+                    items.push(item);
+                }
+            })
+            
+            return axios.put(databaseHost + ':' + databasePort + '/accounts/' + id, 
+            { 
+                "firstName": result.data.firstName, 
+                "lastName": result.data.lastName, 
+                "emailAddress": result.data.emailAddress, 
+                "password": result.data.password,
+                "savedItems": items
+            })
+        })
+    })
 }
 
 const getUserSession = function() {
-
     return getAccounts().then((response) => {
         if (response && response.data.length > 0) {
             return axios.get(databaseHost + ':' + databasePort + '/user')
@@ -109,5 +160,6 @@ export {
     saveItem,
     getUserSession,
     saveUserSession,
-    clearUserSession
+    clearUserSession,
+    deleteItem
 }

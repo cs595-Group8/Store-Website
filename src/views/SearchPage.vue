@@ -23,7 +23,7 @@
     <img src="../images/loading.gif" style="margin: 1rem"/>
   </div>
   <div v-if="!firstSearch && !isLoading">
-    <div style="display: flex; ">
+    <div style="display: flex">
       <FilterBox></FilterBox>
       <div style="display: flex; justify-content: center">
         <div style="display: grid; grid-template-columns: auto auto auto auto auto auto; width: 80%; padding: 1rem">
@@ -35,6 +35,7 @@
               v-bind:img=item.img
               v-bind:price=item.price
               v-bind:productLink=item.productLink
+              isSearch={{true}}
             />
           </div>
         </div>
@@ -86,13 +87,13 @@
         this.firstSearch = false;
         this.isLoading = true;
         let items = [];
-        const targetResults = await this.targetSearch();
+        //const targetResults = await this.targetSearch();
         const walmartResults = await this.walmartSearch();
-        if(targetResults.data.search_results != undefined){
-          targetResults.data.search_results.forEach((item) => {
-            items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Target", "Available", item.product.rating, item.product.main_image, item.product.link));
-          });
-        }
+        //if(targetResults.data.search_results != undefined){
+          //targetResults.data.search_results.forEach((item) => {
+            //items.push(new Item(item.product.title, this.formatter.format(item.offers.primary.price), "Target", "Available", item.product.rating, item.product.main_image, item.product.link));
+          //});
+        //}
         
         if(walmartResults.data.search_results != undefined){
           walmartResults.data.search_results.forEach((item) => {

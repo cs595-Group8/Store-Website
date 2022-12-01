@@ -5,12 +5,12 @@ import BootstrapVue3 from 'bootstrap-vue-3'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar, faBookmark } from '@fortawesome/free-regular-svg-icons';
 import store from './store'
 
 
 
-library.add(fas, faStar);
+library.add(fas, faStar, faBookmark);
 
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 import 'bootstrap/dist/css/bootstrap.css'
