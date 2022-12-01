@@ -9,7 +9,7 @@
             <div style="display: flex; justify-content: space-between; ">
                 <p class="card-text">
                     <strong>Price:</strong> 
-                    <div> {{price}}</div>
+                    <div> {{formatter.format(price)}}</div>
                 </p>
                 <p class="card-text">
                     <strong>Vendor: </strong> 
@@ -45,6 +45,11 @@
   <script>
     import { saveItem, deleteItem } from "/src/persistance/database.js"
     export default{
+        data(){
+        return{
+                formatter: new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}),
+            }
+        },   
         props:{
             name: String,
             img: String,
