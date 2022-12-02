@@ -2,11 +2,10 @@
 
     <div class="createAccount">
         <b-alert v-model="error" variant="danger" dismissible>
-            {{errorMessage}}
+            {{ errorMessage }}
         </b-alert>
         <div class="wrapper">
-            <b-card 
-                bg-variant="light">
+            <b-card bg-variant="light">
 
                 <b-container>
                     <b-row>
@@ -17,20 +16,14 @@
                                     <b-row>
                                         <b-col>
                                             <!-- First name input field ------->
-                                            <b-form-group 
-                                                label-cols="4" 
-                                                content-cols="8" 
-                                                label="First name:"
+                                            <b-form-group label-cols="4" content-cols="8" label="First name:"
                                                 label-for="first-name">
-                                                <b-form-input 
-                                                    id="first-name" 
-                                                    v-model="firstName"
-                                                    placeholder="Enter your first name"
-                                                    :state="validFirstName"
+                                                <b-form-input id="first-name" v-model="firstName"
+                                                    placeholder="Enter your first name" :state="validFirstName"
                                                     @input="clearFirstNameError">
                                                 </b-form-input>
                                                 <b-form-invalid-feedback>
-                                                    {{firstNameError}}
+                                                    {{ firstNameError }}
                                                 </b-form-invalid-feedback>
                                             </b-form-group>
                                         </b-col>
@@ -39,20 +32,14 @@
                                     <b-row>
                                         <b-col>
                                             <!-- Last name input field -------->
-                                            <b-form-group 
-                                                label-cols="4" 
-                                                content-cols="8" 
-                                                label="Last name:"
+                                            <b-form-group label-cols="4" content-cols="8" label="Last name:"
                                                 label-for="last-name">
-                                                <b-form-input 
-                                                    id="last-name" 
-                                                    v-model="lastName"
-                                                    placeholder="Enter your last name"
-                                                    :state="validLastName"
+                                                <b-form-input id="last-name" v-model="lastName"
+                                                    placeholder="Enter your last name" :state="validLastName"
                                                     @input="clearLastNameError">
                                                 </b-form-input>
                                                 <b-form-invalid-feedback>
-                                                    {{lastNameError}}
+                                                    {{ lastNameError }}
                                                 </b-form-invalid-feedback>
                                             </b-form-group>
                                         </b-col>
@@ -61,20 +48,14 @@
                                     <b-row>
                                         <b-col>
                                             <!-- Email input field ------------>
-                                            <b-form-group 
-                                                label-cols="4" 
-                                                content-cols="8" 
-                                                label="Email:"
+                                            <b-form-group label-cols="4" content-cols="8" label="Email:"
                                                 label-for="email">
-                                                <b-form-input 
-                                                    id="email" 
-                                                    v-model="email"
-                                                    placeholder="Enter your email address"
-                                                    :state="validEmail"
+                                                <b-form-input id="email" v-model="email"
+                                                    placeholder="Enter your email address" :state="validEmail"
                                                     @input="clearEmailError">
                                                 </b-form-input>
                                                 <b-form-invalid-feedback>
-                                                    {{emailError}}
+                                                    {{ emailError }}
                                                 </b-form-invalid-feedback>
                                             </b-form-group>
                                         </b-col>
@@ -94,18 +75,10 @@
                                     <b-row>
                                         <b-col>
                                             <!-- Password input field ----->
-                                            <b-form-group 
-                                                label-cols="6" 
-                                                label-cols-sm="4" 
-                                                content-cols="6"
-                                                content-cols-sm="8" 
-                                                label="Password:" 
-                                                label-for="password">
-                                                <b-form-input 
-                                                    id="password" 
-                                                    v-model="password" 
-                                                    @input="clearPasswordError"
-                                                    placeholder="Enter a password">
+                                            <b-form-group label-cols="6" label-cols-sm="4" content-cols="6"
+                                                content-cols-sm="8" label="Password:" label-for="password">
+                                                <b-form-input id="password" v-model="password" type="password"
+                                                    @input="clearPasswordError" placeholder="Enter a password">
                                                 </b-form-input>
                                             </b-form-group>
                                         </b-col>
@@ -114,22 +87,14 @@
                                     <b-row>
                                         <b-col>
                                             <!-- Password check field ----->
-                                            <b-form-group 
-                                                label-cols="6" 
-                                                label-cols-sm="4" 
-                                                content-cols="6"
-                                                content-cols-sm="8" 
-                                                label="Re-enter password:" 
-                                                label-for="rePassword">
-                                                <b-form-input 
-                                                    id="rePassword" 
-                                                    v-model="rePassword"
-                                                    placeholder="Enter your password again"
-                                                    :state="validPassword"
+                                            <b-form-group label-cols="6" label-cols-sm="4" content-cols="6"
+                                                content-cols-sm="8" label="Re-enter password:" label-for="rePassword">
+                                                <b-form-input type="password" id="rePassword" v-model="rePassword"
+                                                    placeholder="Enter your password again" :state="validPassword"
                                                     @input="clearPasswordError">
                                                 </b-form-input>
                                                 <b-form-invalid-feedback>
-                                                    {{passwordError}}
+                                                    {{ passwordError }}
                                                 </b-form-invalid-feedback>
                                             </b-form-group>
                                         </b-col>
@@ -217,8 +182,8 @@ export default {
                 this.validPassword = false;
                 this.passwordError = this.passwordError + "Password must be at least 8 characters. "
                 valid = false;
-            } 
-            
+            }
+
             if (this.password !== this.rePassword) {
                 this.validPassword = false;
                 this.passwordError = this.passwordError + "Passwords don't match."
@@ -232,7 +197,7 @@ export default {
         clearFirstNameError() {
             this.validFirstName = null;
             this.firstNameError = "";
-            
+
         },
 
         clearLastNameError() {
